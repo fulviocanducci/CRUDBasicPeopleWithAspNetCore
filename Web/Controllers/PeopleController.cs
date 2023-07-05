@@ -41,7 +41,7 @@ namespace Web.Controllers
 
       public ActionResult Create()
       {
-         return View();
+         return View("CreateOrUpdate");
       }
 
       [HttpPost]
@@ -59,7 +59,7 @@ namespace Web.Controllers
          }
          catch
          {
-            return View();
+            return View("CreateOrUpdate");
          }
       }
 
@@ -68,7 +68,7 @@ namespace Web.Controllers
          People model = GetPeopleById(id);
          if (model != null)
          {
-            return View(model);
+            return View("CreateOrUpdate", model);
          }
          return RedirectToAction(nameof(Index));
       }
@@ -88,7 +88,7 @@ namespace Web.Controllers
          }
          catch
          {
-            return View();
+            return View("CreateOrUpdate");
          }
       }
 

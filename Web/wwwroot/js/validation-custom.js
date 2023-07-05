@@ -1,5 +1,4 @@
-﻿
-(function ($) {
+﻿(function ($) {
    $.validator.setDefaults({
       ignore: []
    });
@@ -65,8 +64,37 @@
          }
          return msgCompare;
       });
+   $.validator.addMethod('data-val-required-money',
+      function (value, element, params) {
+         try {
+            var minimum = $(element).attr('data-val-required-money-minimum');
+            var maximum = $(element).attr('data-val-required-money-maximum');
+            let newValue = value.replace(".", "");
+            newValue = newValue.replace(",", ".");
+            newFloatValue = parseFloat(newValue);
+            if (!!minimum && newFloatValue < minimum) {
+               return false;
+            }
+            if (!!maximum) {
+               if (maximum < newFloatValue) {
+                  return false;
+               }
+            }
+            return true;
+         } catch (e) {
+            throw e;
+         }
+         return false;
+      }, function (params, element) {
+         var msgCompare = $(element).attr('data-val-required-money');
+         if (!msgCompare) {
+            msgCompare = 'Not empty value';
+         }
+         return msgCompare;
+      });
    if ($.validator && $.validator.unobtrusive && $.validator.unobtrusive.adapters) {
       $.validator.unobtrusive.adapters.addBool('data-val-required-date-time');
+      $.validator.unobtrusive.adapters.addBool('data-val-required-money');
       $.validator.unobtrusive.adapters.addBool('data-val-required-phone');
       $.validator.unobtrusive.adapters.addBool('data-val-required-zipcode');
       $.validator.unobtrusive.adapters.addBool('data-val-required-one-checkbox');

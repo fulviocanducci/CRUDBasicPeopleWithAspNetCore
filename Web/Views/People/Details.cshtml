@@ -1,48 +1,45 @@
 ﻿@model Web.Models.People
-
 @{
-    ViewData["Title"] = "Details";
+   ViewData["Title"] = "Pessoa - Detalhes";
 }
-
-<h1>Detalhes</h1>
-
-<div>
-    <h4>Pessoa</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Observation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Observation)
-        </dd>
-    </dl>
+<h4 class="text-truncate text-center">@Model?.Name</h4>
+<div class="mb-1">
+   <h6>Dados completos</h6>
+   <hr />
+   <dl class="row">
+      <dt class="col-sm-4 mb-1">
+         @Html.DisplayNameFor(model => model.Name):
+      </dt>
+      <dd class="col-sm-8 mb-1 text-left">
+         @Html.DisplayFor(model => model.Name)
+      </dd>
+      <dt class="col-sm-4 mb-1">
+         @Html.DisplayNameFor(model => model.CreatedAt):
+      </dt>
+      <dd class="col-sm-8 mb-1 text-left">
+         @Html.DisplayFor(model => model.CreatedAt)
+      </dd>
+      <dt class="col-sm-4 mb-1">
+         @Html.DisplayNameFor(model => model.Salary):
+      </dt>
+      <dd class="col-sm-8 mb-1 text-left">
+         @Html.DisplayFor(model => model.Salary)
+      </dd>
+      <dt class="col-sm-4 mb-1">
+         @Html.DisplayNameFor(model => model.Status):
+      </dt>
+      <dd class="col-sm-8 mb-1 text-left">
+         @Html.DisplayFor(model => model.Status)
+      </dd>
+      <dt class="col-sm-4 mb-1">
+         @Html.DisplayNameFor(model => model.Observation):
+      </dt>
+      <dd class="col-sm-8 mb-1 text-left">
+         @Html.DisplayFor(model => model.Observation)
+      </dd>
+   </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Alterar</a> |
-    <a asp-action="Index">Voltar para lista</a>
+<div class="mb-1">
+   <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Alterar</a> |
+   <a asp-action="Index" class="btn btn-secondary btn-sm"><i class="bi bi-backspace"></i> Voltar para lista</a>
 </div>

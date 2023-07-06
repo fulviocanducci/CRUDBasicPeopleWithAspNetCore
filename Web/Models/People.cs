@@ -19,7 +19,7 @@ namespace Web.Models
       [RequiredDateTime(ErrorMessage = "Data inválida")]
       public DateTime CreatedAt { get; set; }
 
-      [DisplayName("Data")]
+      [DisplayName("Salário")]
       [DisplayFormat(DataFormatString = "{0:N2}")]
       [Required(ErrorMessage = "Digite o salário")]
       [RequiredMoney(1, ErrorMessage = "Valor inválido")]

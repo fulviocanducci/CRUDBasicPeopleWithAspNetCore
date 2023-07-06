@@ -1,54 +1,55 @@
 ﻿@model IEnumerable<Web.Models.People>
-
 @{
-   ViewData["Title"] = "Index";
+   ViewData["Title"] = "Pessoas - Listagem geral";
 }
-
-<h1>Lista de Pessoas</h1>
-
-<p>
-   <a asp-action="Create">Novo</a>
+<h4 class="text-center">Lista de Pessoas</h4>
+<p class="text-center mt-2 mb-2">
+   <a asp-action="Create" class="btn btn-primary btn-sm"><i class="bi bi-plus-circle"></i> Novo</a>
 </p>
-<table class="table">
-   <thead>
-      <tr>
-         <th>
-            @Html.DisplayNameFor(model => model.Name)
-         </th>
-         <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-         </th>
-         <th>
-            @Html.DisplayNameFor(model => model.Salary)
-         </th>
-         <th>
-            @Html.DisplayNameFor(model => model.Status)
-         </th>
-         <th>...</th>
-      </tr>
-   </thead>
-   <tbody>
-      @foreach (var item in Model)
-      {
-         <tr>
-            <td>
-               @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => item.Salary)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-               <a asp-action="Edit" asp-route-id="@item.Id">Alterar</a> |
-               <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-               <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
-            </td>
+<div class="table-responsive">
+
+
+   <table class="table table-hover table-sm">
+      <thead>
+         <tr class="table-primary">
+            <th scope="col" class="text-center text-truncate">
+               @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th scope="col" class="text-center text-truncate">
+               @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th scope="col" class="text-center text-truncate">
+               @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th scope="col" class="text-center text-truncate">
+               @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th scope="col" class="text-center text-truncate">...</th>
          </tr>
-      }
-   </tbody>
-</table>
+      </thead>
+      <tbody>
+         @foreach (var item in Model)
+         {
+            <tr>
+               <td class="text-truncate">
+                  @Html.DisplayFor(modelItem => item.Name)
+               </td>
+               <td class="text-center text-truncate">
+                  @Html.DisplayFor(modelItem => item.CreatedAt)
+               </td>
+               <td class="text-right text-truncate">
+                  @Html.DisplayFor(modelItem => item.Salary)
+               </td>
+               <td class="col-md-2 text-center text-truncate">
+                  @Html.DisplayFor(modelItem => item.Status)
+               </td>
+               <td class="col-md-3 text-center text-truncate">
+                  <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Alterar</a> |
+                  <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-sm"><i class="bi bi-ticket-detailed"></i> Detalhes</a> |
+                  <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="bi bi-recycle"></i> Excluir</a>
+               </td>
+            </tr>
+         }
+      </tbody>
+   </table>
+</div>

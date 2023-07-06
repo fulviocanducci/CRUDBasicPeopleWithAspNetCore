@@ -5,6 +5,7 @@
       <CheckEolTargetFramework>false</CheckEolTargetFramework>
    </PropertyGroup>
    <ItemGroup>
+      <PackageReference Include="Canducci.Pagination.Mvc" Version="3.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.17" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
         <PrivateAssets>all</PrivateAssets>

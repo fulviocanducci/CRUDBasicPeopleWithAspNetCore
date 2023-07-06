@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Web.Models.People>
+﻿@model Paginated<Web.Models.People>
 @{
    ViewData["Title"] = "Pessoas - Listagem geral";
 }
@@ -6,23 +6,31 @@
 <p class="text-center mt-2 mb-2">
    <a asp-action="Create" class="btn btn-primary btn-sm"><i class="bi bi-plus-circle"></i> Novo</a>
 </p>
+<div class="mt-2 mb-2">
+   <form asp-action="Index" method="get">
+      <div class="input-group input-group-sm mb-3">
+         <input type="text" class="form-control" value="@ViewBag?.Filter" name="filter" id="filter" placeholder="Digite o nome" aria-label="Digite o nome" aria-describedby="button-addon2" autofocus>
+         <div class="input-group-append">
+            <button class="btn btn-outline-primary btn-sm" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+         </div>
+      </div>
+   </form>
+</div>
 <div class="table-responsive">
-
-
    <table class="table table-hover table-sm">
       <thead>
          <tr class="table-primary">
             <th scope="col" class="text-center text-truncate">
-               @Html.DisplayNameFor(model => model.Name)
+               Nome completo
             </th>
             <th scope="col" class="text-center text-truncate">
-               @Html.DisplayNameFor(model => model.CreatedAt)
+               Data
             </th>
             <th scope="col" class="text-center text-truncate">
-               @Html.DisplayNameFor(model => model.Salary)
+               Salário
             </th>
             <th scope="col" class="text-center text-truncate">
-               @Html.DisplayNameFor(model => model.Status)
+               Status
             </th>
             <th scope="col" class="text-center text-truncate">...</th>
          </tr>
@@ -52,4 +60,16 @@
          }
       </tbody>
    </table>
+</div>
+<div>
+   <pagination pagination-asp-action="Index"
+               pagination-asp-controller="People"
+               pagination-style="NumbersWithFirstPreviousNextLast"
+               pagination-css-class-li-active="active"
+               pagination-css-class-ul="pagination pagination-sm justify-content-center"
+               pagination-paginated="Model"
+               pagination-css-class-anchor="page-link"
+               pagination-css-class-li="page-item"
+               pagination-css-class-li-disabled="disabled">
+   </pagination>
 </div>

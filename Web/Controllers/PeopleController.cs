@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Canducci.Pagination;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Web.Contexts;
@@ -24,9 +25,15 @@ namespace Web.Controllers
          _database = database;
       }
 
-      public ActionResult Index()
+      public ActionResult Index(int? current, string filter = null)
       {
-         return View(GetPeopleQueryable().ToList());
+         IQueryable<People> model = GetPeopleQueryable();
+         if (string.IsNullOrEmpty(filter) == false)
+         {
+            model = model.Where(c => c.Name.Contains(filter)).OrderBy(c => c.Name).ThenBy(c => c.Id);
+         }
+         ViewBag.Filter = filter;
+         return View(model.ToPaginated(current ?? 1, 10));
       }
 
       public ActionResult Details(int id)

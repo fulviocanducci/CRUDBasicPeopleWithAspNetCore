@@ -4,18 +4,24 @@ namespace API
 {
    public class Program
    {
+      #region private_methods
       private static string GetConnectionMySqlString(WebApplicationBuilder builder)
       {
-         return builder.Configuration.GetConnectionString("DatabaseMySql");
+         return builder.Configuration.GetConnectionString("DatabaseMySql") ?? string.Empty;
       }
+
       private static MySqlServerVersion GetMysqlVersion()
       {
          return new MySqlServerVersion(new Version(8, 0, 31));
       }
+      #endregion private_methods
 
       public static void Main(string[] args)
       {
          var builder = WebApplication.CreateBuilder(args);
+         builder.Services.AddMediatR(options => {
+            options.RegisterServicesFromAssembly(typeof(Program).Assembly);
+         });
          builder.Services.Configure<RouteOptions>(options =>
          {
             options.LowercaseUrls = true;
